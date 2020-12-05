@@ -2,10 +2,10 @@
 
 TODO :
 
-1) Afficher plus de 10 resultats : Essayer de concatener
+1) Afficher plus de 10 resultats : Essayer de concatener DONE
 
 2) Travailler sur l'affichage de la flatlist
 
-3) Rajouter les détails quand on clique dessus
+3) Rajouter les détails quand on clique dessus => Utiliser la recherche par ID pour avoir plus d'info
 
 4) Style

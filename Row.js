@@ -1,24 +1,53 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableHighlight,
+} from "react-native";
 import PropTypes from "prop-types";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default class Row extends React.Component {
-  static propTypes = {
-    title: PropTypes.string,
-  };
+  // static propTypes = {
+  //   title: PropTypes.string,
+  // };
   render() {
-    console.log("props title");
-    console.log(this.props.Title);
+    // console.log(this.props.Poster);
     return (
-      <View style={styles.row}>
-        <Text>{this.props.Title}</Text>
-      </View>
+      <TouchableOpacity onPress={() => {}}>
+        <View style={styles.item}>
+          <Image
+            source={{ uri: this.props.Poster.toString() }}
+            style={{ width: 80, height: 100 }}
+          />
+          <View>
+            <View style={{ marginLeft: 5 }}>
+              <Text style={styles.movieTitle}>
+                {this.props.Title}
+                {"\n"}
+              </Text>
+            </View>
+            <Text style={{ marginLeft: 5 }}>
+              {this.props.Year + ", " + this.props.Type}
+            </Text>
+          </View>
+        </View>
+      </TouchableOpacity>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  row: {
+  item: {
     padding: 20,
+    flexDirection: "row",
+  },
+  movieTitle: {
+    fontWeight: "bold",
+    fontSize: 14,
+    textAlign: "left",
+    // lineHeight: 20,
   },
 });

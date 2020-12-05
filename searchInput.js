@@ -17,7 +17,6 @@ export default class SearchInput extends React.Component {
   };
 
   render() {
-    // console.log(this.state.title);
     return (
       <View>
         <TextInput

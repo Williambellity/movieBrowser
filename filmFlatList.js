@@ -10,7 +10,7 @@ export default class FilmFlatList extends React.Component {
       <FlatList
         data={this.props.data}
         renderItem={this.renderItem}
-        keyExtractor={(item) => item.imdbid}
+        keyExtractor={(item) => item.imdbID}
       />
     );
   }
