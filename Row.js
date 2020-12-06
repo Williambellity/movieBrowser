@@ -10,13 +10,12 @@ import PropTypes from "prop-types";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default class Row extends React.Component {
-  // static propTypes = {
-  //   title: PropTypes.string,
-  // };
+  handleOnPress = () => {
+    this.props.onTouch(this.props.imdbID);
+  };
   render() {
-    // console.log(this.props.Poster);
     return (
-      <TouchableOpacity onPress={() => {}}>
+      <TouchableOpacity onPress={this.handleOnPress}>
         <View style={styles.item}>
           <Image
             source={{ uri: this.props.Poster.toString() }}

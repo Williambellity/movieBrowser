@@ -8,12 +8,7 @@ export default class Home extends React.Component {
         <Text>Home</Text>
         <Button
           title="Go to Search section"
-          onPress={
-            () =>
-              this.props.navigation.navigate(
-                "Search"
-              ) /*The name have to match with what you put in app.js*/
-          }
+          onPress={() => this.props.navigation.navigate("Search")}
         />
       </View>
     );
