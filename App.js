@@ -6,6 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Home from "./screens/home";
 import Search from "./screens/search";
+import Details from "./screens/details";
 
 const Stack = createStackNavigator();
 
@@ -26,10 +27,6 @@ export default class App extends React.Component {
             component={Home}
             options={{
               title: "Home",
-              // headerStyle: {
-              //   backgroundColor: "#dc143c",
-              // },
-              // headerTintColor: "white",
             }}
           />
           <Stack.Screen
@@ -37,8 +34,14 @@ export default class App extends React.Component {
             component={Search}
             options={{
               title: "Search",
-              // headerStyle: { backgroundColor: "#dc143c" },
-              // headerTintColor: "white",
+            }}
+          />
+          <Stack.Screen
+            name="Details"
+            component={Details}
+            options={{
+              headerTransparent: true,
+              title: "",
             }}
           />
         </Stack.Navigator>

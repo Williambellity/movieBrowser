@@ -8,21 +8,27 @@ import {
 } from "react-native";
 import PropTypes from "prop-types";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
 
-export default class Row extends React.Component {
-  handleOnPress = () => {
-    this.props.onTouch(this.props.imdbID);
+class Row extends React.Component {
+  handleTouchAMovie = async () => {
+    const response = await fetch(
+      `http://www.omdbapi.com/?i=${this.props.imdbID}&apikey=4e972569`
+    );
+    const result = await response.json();
+    this.props.navigation.navigate("Details", { ...result });
   };
+
   render() {
     return (
-      <TouchableOpacity onPress={this.handleOnPress}>
+      <TouchableOpacity onPress={this.handleTouchAMovie}>
         <View style={styles.item}>
           <Image
             source={{ uri: this.props.Poster.toString() }}
             style={{ width: 80, height: 100 }}
           />
           <View>
-            <View style={{ marginLeft: 5, marginRight: 140 }}>
+            <View style={{ marginLeft: 5, marginRight: 80 }}>
               <Text style={styles.movieTitle}>
                 {this.props.Title}
                 {"\n"}
@@ -38,16 +44,21 @@ export default class Row extends React.Component {
   }
 }
 
+export default function (props) {
+  const navigation = useNavigation();
+
+  return <Row {...props} navigation={navigation} />;
+}
+
 const styles = StyleSheet.create({
   item: {
-    padding: 20,
+    padding: 10,
     flexDirection: "row",
   },
   movieTitle: {
     fontWeight: "bold",
     fontSize: 14,
     textAlign: "left",
-    paddingHorizontal: 5,
-    // lineHeight: 20,
+    paddingHorizontal: 1,
   },
 });
