@@ -3,9 +3,9 @@ import React from "react";
 
 export default class Details extends React.Component {
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <Button
           title={"Go back to search results"}
           onPress={this.props.goBack}

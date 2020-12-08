@@ -1,7 +1,15 @@
 import React from "react";
-import { View, Text, StyleSheet, AppLoading, Button } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  AppLoading,
+  Button,
+  SafeAreaView,
+} from "react-native";
 import SearchInput from "../searchInput";
 import FilmFlatList from "../filmFlatList";
+import { NavigationContainer } from "@react-navigation/native";
 // import researchAPI from "../API";
 
 export default class Search extends React.Component {
@@ -19,13 +27,13 @@ export default class Search extends React.Component {
     const new_data = this.state.result.concat(result.Search);
 
     this.setState((prevState) => ({
-      isReady: result.Response === "True",
       result: new_data,
       keepSearching: result.Response === "True",
     }));
   };
 
   fetchMovies = async (search) => {
+    this.props.navigation.setOptions({ title: search.title });
     // Formatage du titre en word1+word2+..
     const title = search.title.split(" ").join("+");
     // New research => result = []
@@ -55,7 +63,9 @@ export default class Search extends React.Component {
 
     return (
       <View style={styles.container}>
-        <SearchInput onSubmit={this.fetchMovies} />
+        <View style={styles.input}>
+          <SearchInput onSubmit={this.fetchMovies} />
+        </View>
         <FilmFlatList data={this.state.result} />
       </View>
     );
@@ -66,7 +76,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
+
     justifyContent: "center",
+  },
+  input: {
+    // justifyContent: "center",
   },
 });

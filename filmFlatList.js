@@ -18,7 +18,7 @@ export default class FilmFlatList extends React.Component {
       `http://www.omdbapi.com/?i=${imdbID}&apikey=4e972569`
     );
     const result = await response.json();
-    console.log(result);
+    // console.log(result);
     this.setState({
       showDetails: true,
       details: result,
@@ -35,6 +35,7 @@ export default class FilmFlatList extends React.Component {
   renderItem = ({ item }) => <Row {...item} onTouch={this.handleTouchAMovie} />;
 
   render() {
+    console.log(this.props.data);
     if (!this.state.showDetails) {
       return (
         <FlatList

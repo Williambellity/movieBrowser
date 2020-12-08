@@ -1,5 +1,14 @@
 import React from "react";
-import { View, Text, StyleSheet, TextInput, Button } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Button,
+  Keyboard,
+} from "react-native";
+import SearchButton from "./searchButton";
+import { SearchBar } from "react-native-elements";
 
 export default class SearchInput extends React.Component {
   state = {
@@ -7,44 +16,31 @@ export default class SearchInput extends React.Component {
   };
 
   getHandler = (key) => {
+    // this.search.focus();
     return (val) => {
       this.setState({ [key]: val });
     };
   };
-
   handleSubmit = () => {
+    Keyboard.dismiss();
     this.props.onSubmit(this.state);
   };
 
   render() {
     return (
       <View>
-        <TextInput
-          style={styles.input}
-          onChangeText={this.getHandler("title")} //onChangeText props
-          textAlign="center"
+        <SearchBar
+          ref={(search) => (this.search = search)}
+          onChangeText={this.getHandler("title")}
+          placeholder="Type to start"
+          searchIcon={{ size: 40, onPress: this.handleSubmit }}
+          value={this.state.title}
         />
-        <Button color="black" title="Search" onPress={this.handleSubmit} />
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  input: {
-    backgroundColor: "#fff",
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 3,
-    minWidth: 20,
-    marginHorizontal: 20,
-    borderColor: "black",
-    borderWidth: 1,
-  },
+  container: {},
 });

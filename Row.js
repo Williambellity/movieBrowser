@@ -22,7 +22,7 @@ export default class Row extends React.Component {
             style={{ width: 80, height: 100 }}
           />
           <View>
-            <View style={{ marginLeft: 5 }}>
+            <View style={{ marginLeft: 5, marginRight: 140 }}>
               <Text style={styles.movieTitle}>
                 {this.props.Title}
                 {"\n"}
@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 14,
     textAlign: "left",
+    paddingHorizontal: 5,
     // lineHeight: 20,
   },
 });

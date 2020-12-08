@@ -13,16 +13,23 @@ export default class App extends React.Component {
   render() {
     return (
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: "#dc143c",
+            },
+            headerTintColor: "white",
+          }}
+        >
           <Stack.Screen
             name="Home"
             component={Home}
             options={{
               title: "Home",
-              headerStyle: {
-                backgroundColor: "black",
-              },
-              headerTintColor: "white",
+              // headerStyle: {
+              //   backgroundColor: "#dc143c",
+              // },
+              // headerTintColor: "white",
             }}
           />
           <Stack.Screen
@@ -30,8 +37,8 @@ export default class App extends React.Component {
             component={Search}
             options={{
               title: "Search",
-              headerStyle: { backgroundColor: "black" },
-              headerTintColor: "white",
+              // headerStyle: { backgroundColor: "#dc143c" },
+              // headerTintColor: "white",
             }}
           />
         </Stack.Navigator>
