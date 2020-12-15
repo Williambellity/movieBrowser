@@ -1,19 +1,12 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableHighlight,
-} from "react-native";
-import PropTypes from "prop-types";
+import { View, Text, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 
 class Row extends React.Component {
   handleTouchAMovie = async () => {
     const response = await fetch(
-      `http://www.omdbapi.com/?i=${this.props.imdbID}&apikey=4e972569`
+      `http://www.omdbapi.com/?i=${this.props.imdbID}&plot=full&apikey=4e972569`
     );
     const result = await response.json();
     this.props.navigation.navigate("Details", { ...result });

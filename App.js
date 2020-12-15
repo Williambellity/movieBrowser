@@ -40,8 +40,7 @@ export default class App extends React.Component {
             name="Details"
             component={Details}
             options={{
-              headerTransparent: true,
-              title: "",
+              title: "Details",
             }}
           />
         </Stack.Navigator>

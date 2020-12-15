@@ -4,13 +4,16 @@ import PropTypes from "prop-types";
 
 export default class SearchButton extends React.Component {
   static propTypes = {
-    onPress: PropTypes.func,
+    navigation: PropTypes.object,
   };
 
+  handleNavigation = () => {
+    this.props.nav.navigate("Search");
+  };
   render() {
     return (
       <View style={styles.buttonSSR}>
-        <TouchableOpacity onPress={this.props.onPress}>
+        <TouchableOpacity onPress={this.handleNavigation}>
           <View style={styles.buttonStart}>
             <Text style={styles.buttonText}>Search</Text>
           </View>
@@ -31,7 +34,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 30,
-    color: "red",
+    color: "#dc143c",
   },
   buttonSSR: {
     padding: 10,

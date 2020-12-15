@@ -1,16 +1,7 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  AppLoading,
-  Button,
-  SafeAreaView,
-} from "react-native";
+import { View, StyleSheet } from "react-native";
 import SearchInput from "../searchInput";
 import FilmFlatList from "../filmFlatList";
-import { NavigationContainer } from "@react-navigation/native";
-// import researchAPI from "../API";
 
 export default class Search extends React.Component {
   state = {

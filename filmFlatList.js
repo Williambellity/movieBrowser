@@ -1,8 +1,6 @@
 import React from "react";
-import { StyleSheet, FlatList, View, Button } from "react-native";
+import { StyleSheet, FlatList } from "react-native";
 import Row from "./Row";
-import Details from "./Details";
-import { useNavigation } from "@react-navigation/native";
 
 export default class FilmFlatList extends React.Component {
   renderItem = ({ item }) => <Row {...item} />;

@@ -1,15 +1,12 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, StyleSheet } from "react-native";
+import SearchButton from "../searchButton";
 
 export default class Home extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Home</Text>
-        <Button
-          title="Go to Search section"
-          onPress={() => this.props.navigation.navigate("Search")}
-        />
+        <SearchButton nav={this.props.navigation} />
       </View>
     );
   }
