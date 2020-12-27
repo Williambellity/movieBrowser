@@ -12,6 +12,18 @@ class Row extends React.Component {
     this.props.navigation.navigate("Details", { ...result });
   };
 
+  displayFavoriteImage = () => {
+    if (this.props.favoritesFilm.findIndex(item => item.imdbID === this.props.imdbID) !== -1){
+      var sourceImage = require('./images/ic_favorite.png')
+    }
+    return (
+      <Image
+      source={sourceImage}
+      style={styles.favoriteImage}
+      />
+    )
+  }
+
   render() {
     return (
       <TouchableOpacity onPress={this.handleTouchAMovie}>
@@ -24,9 +36,10 @@ class Row extends React.Component {
             <View style={{ marginLeft: 5, marginRight: 80 }}>
               <Text style={styles.movieTitle}>
                 {this.props.Title}
-                {"\n"}
+                
               </Text>
             </View>
+            {this.displayFavoriteImage()}
             <Text style={{ marginLeft: 5 }}>
               {this.props.Year + ", " + this.props.Type}
             </Text>
@@ -54,4 +67,8 @@ const styles = StyleSheet.create({
     textAlign: "left",
     paddingHorizontal: 1,
   },
+  favoriteImage: {
+    width: 40,
+    height: 40,
+  }
 });

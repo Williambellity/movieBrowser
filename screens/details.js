@@ -5,22 +5,56 @@ import {
   Button,
   Image,
   AccessibilityInfo,
+  TouchableOpacity
 } from "react-native";
 import React from "react";
 import Constants from "expo-constants";
 import Star from "react-native-star-view";
+import {connect} from 'react-redux'
 
-export default class Details extends React.Component {
+class Details extends React.Component {
+  state = {
+    film: this.props.route.params
+  }
   handleRatings = (value) => {
     const int_value = parseFloat(value.split("/")[0]);
     return int_value / 2;
   };
 
+  toggleFavorite = () => {
+    //action redux
+    const action ={type: "TOGGLE_FAVORITE", value: this.state.film}
+    this.props.dispatch(action)
+  }
+
+  componentDidUpdate() {
+    
+  }
+  
+  displayFavoriteImage = () => {
+    var sourceImage = require('../images/ic_favorite_border.png')
+    if (this.props.favoritesFilm.findIndex(item => item.imdbID === this.state.film.imdbID) !== -1){
+      sourceImage = require('../images/ic_favorite.png')
+    }
+    return (
+      <Image
+      source={sourceImage}
+      style={styles.favoriteImage}
+      />
+    )
+  }
+
   render() {
+    
     const p = this.props.route.params;
     const rating = this.handleRatings(p.Ratings[0].Value);
     return (
       <View style={styles.container}>
+        <TouchableOpacity 
+        style={styles.favorite_container}
+        onPress={this.toggleFavorite} >
+          {this.displayFavoriteImage()}
+          </TouchableOpacity>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Image
             source={{ uri: this.props.route.params.Poster.toString() }}
@@ -72,7 +106,19 @@ export default class Details extends React.Component {
   }
 }
 
+mapStateToProps = (state) => {
+  // specifiez les données qui nous interessent
+
+  return {
+    favoritesFilm: state.favoritesFilm
+  }
+}
+export default connect(mapStateToProps)(Details)
+
 const styles = StyleSheet.create({
+  favorite_container: {
+    alignItems:'center'
+  },
   container: {
     paddingTop: Constants.statusBarHeight,
     paddingLeft: 5,
@@ -93,4 +139,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginRight: 200,
   },
+  favoriteImage: {
+    width: 40,
+    height: 40,
+  }
 });
